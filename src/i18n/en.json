@@ -1,0 +1,38 @@
+{
+  "welcome": "Plan Your Dream Trip ✨",
+  "destinations": {
+    "title": "Popular Destinations",
+    "udaipur": "Udaipur",
+    "jaipur": "Jaipur",
+    "jodhpur": "Jodhpur"
+  },
+  "destination": {
+    "udaipur": {
+      "name": "Udaipur",
+      "about": "Udaipur is known as the City of Lakes, famous for its palaces and scenic beauty.",
+      "map": "Location Map",
+      "places": "Popular Places",
+      "gallery": "Gallery",
+      "bestTime": "Best Time: Oct - Mar",
+      "explore": "Explore Now"
+    }
+  },
+  "budget": {
+    "title": "Budget Tracker",
+    "desc": "Track your expenses easily"
+  },
+  "services": {
+    "title": "Services",
+    "bike": "Bike Taxi",
+    "car": "Car Taxi",
+    "hotel": "Hotels",
+    "guide": "Tour Guide"
+  },
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "trips": "Trips",
+    "wishlist": "Wishlist",
+    "news": "News"
+  }
+}

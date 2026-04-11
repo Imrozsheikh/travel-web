@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import BottomNav from "./components/BottomNav";
 import News from "./pages/News";
 import DestinationDetail from "./pages/DestinationDetail";
+import ServiceDetail from "./pages/ServiceDetail";
 
 const Layout = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ const Layout = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/news" element={<News />} />
           <Route path="/destination/:id" element={<DestinationDetail />} />
+          <Route path="/service/:type" element={<ServiceDetail />} />
         </Routes>
       </div>
 
