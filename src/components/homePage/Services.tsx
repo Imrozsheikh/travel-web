@@ -30,7 +30,6 @@ const Services = ({ loading }: { loading: boolean }) => {
       key: "hotel",
       img: images.hotels,
     },
-    // {
     //   icon: <FaMapMarkedAlt />,
     //   key: "guide",
     //   img: images.guide,
