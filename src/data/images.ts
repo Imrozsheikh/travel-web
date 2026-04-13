@@ -7,9 +7,10 @@ export const images = {
 
   hero4: "https://images.unsplash.com/photo-1587474260584-136574528ed5", // Mehrangarh Fort (Jodhpur)
 
-  bike:   "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80",
+  bike: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80",
 
   car: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg",
+  tuktuk: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg",
 
   hotels: "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg",
 

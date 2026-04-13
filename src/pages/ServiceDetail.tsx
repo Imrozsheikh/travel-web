@@ -31,8 +31,8 @@ const ServiceDetail = () => {
       return ["All", "Budget", "Deluxe", "Family", "Luxury"];
     }
 
-    if (type === "guide") {
-      return ["All", "Local", "Full Day", "Heritage", "Temple"];
+    if (type === "tuktuk") {
+      return ["All", "Local Ride", "Sightseeing", "Pickup", "Temple"];
     }
 
     return ["All"];

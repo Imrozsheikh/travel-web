@@ -1,3 +1,5 @@
+import { Plane, Users, Camera } from "lucide-react";
+
 export const newsData = [
   {
     title: "Top 10 Places to Visit in 2026",
@@ -28,7 +30,6 @@ export const newsData = [
 export const destinationsData = {
   udaipur: {
     hero: "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?auto=format&fit=crop&w=1200&q=80",
-
     places: [
       {
         name: "Lake Pichola",
@@ -47,6 +48,48 @@ export const destinationsData = {
       },
     ],
   },
+
+  jaipur: {
+    hero: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1200&q=80",
+    places: [
+      {
+        name: "Hawa Mahal",
+        img: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+        rating: 4.7,
+      },
+      {
+        name: "Amber Fort",
+        img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
+        rating: 4.8,
+      },
+      {
+        name: "Jal Mahal",
+        img: "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?auto=format&fit=crop&w=800&q=80",
+        rating: 4.6,
+      },
+    ],
+  },
+
+  jodhpur: {
+    hero: "https://images.unsplash.com/photo-1599661046986-7f3b7b7f4bea?auto=format&fit=crop&w=1200&q=80",
+    places: [
+      {
+        name: "Mehrangarh Fort",
+        img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
+        rating: 4.9,
+      },
+      {
+        name: "Jaswant Thada",
+        img: "https://images.unsplash.com/photo-1663088196375-3b0f5ad7881e?auto=format&fit=crop&w=800&q=80",
+        rating: 4.7,
+      },
+      {
+        name: "Clock Tower",
+        img: "https://images.unsplash.com/photo-1617196039897-7b7e9d821a3d?auto=format&fit=crop&w=800&q=80",
+        rating: 4.5,
+      },
+    ],
+  },
 };
 
 export const serviceData = {
@@ -57,6 +100,11 @@ export const serviceData = {
       name: "Activa Rental",
       price: 300,
       img: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
+      images: [
+        "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341",
+        "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
+      ],
       duration: "24 Hours",
       bike: "Honda Activa 6G",
       route: "City Ride • Local Travel",
@@ -67,12 +115,18 @@ export const serviceData = {
         "Documents Available",
       ],
     },
+
     {
       id: 2,
       category: "Scooty",
       name: "Jupiter Rental",
       price: 320,
       img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341",
+      images: [
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341",
+        "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341",
+      ],
       duration: "24 Hours",
       bike: "TVS Jupiter",
       route: "Local Travel",
@@ -83,12 +137,18 @@ export const serviceData = {
         "Documents Available",
       ],
     },
+
     {
       id: 3,
       category: "Bike",
       name: "Bullet Rental",
       price: 800,
       img: "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+      images: [
+        "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+        "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+        "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+      ],
       duration: "24 Hours",
       bike: "Royal Enfield 350",
       route: "Long Ride • Highway Tour",
@@ -99,12 +159,18 @@ export const serviceData = {
         "Documents Available",
       ],
     },
+
     {
       id: 4,
       category: "Bike",
       name: "Splendor Rental",
       price: 350,
       img: "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+      images: [
+        "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+        "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+        "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+      ],
       duration: "24 Hours",
       bike: "Hero Splendor",
       route: "Daily Ride",
@@ -115,12 +181,18 @@ export const serviceData = {
         "Documents Available",
       ],
     },
+
     {
       id: 5,
       category: "Sports",
       name: "Pulsar Rental",
       price: 500,
       img: "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+      images: [
+        "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+        "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+        "https://images.unsplash.com/photo-1609630875171-b1321377ee65",
+      ],
       duration: "24 Hours",
       bike: "Bajaj Pulsar",
       route: "City + Highway",
@@ -131,12 +203,18 @@ export const serviceData = {
         "Documents Available",
       ],
     },
+
     {
       id: 6,
       category: "Sports",
       name: "KTM Duke Rental",
       price: 900,
       img: "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "24 Hours",
       bike: "KTM Duke 200",
       route: "Adventure Ride",
@@ -156,6 +234,11 @@ export const serviceData = {
       name: "Swift Dzire",
       price: 2200,
       img: "https://images.unsplash.com/photo-1549924231-f129b911e442",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "8 Hours",
       car: "Sedan",
       route: "Local City Tour",
@@ -167,6 +250,11 @@ export const serviceData = {
       name: "Honda Amaze",
       price: 2400,
       img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "8 Hours",
       car: "Sedan",
       route: "City Ride",
@@ -178,6 +266,11 @@ export const serviceData = {
       name: "Scorpio",
       price: 3500,
       img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "8 Hours",
       car: "SUV",
       route: "Outstation Tour",
@@ -189,6 +282,11 @@ export const serviceData = {
       name: "Thar",
       price: 4200,
       img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "8 Hours",
       car: "SUV",
       route: "Off Road Tour",
@@ -200,6 +298,11 @@ export const serviceData = {
       name: "Innova Crysta",
       price: 4500,
       img: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "12 Hours",
       car: "Innova",
       route: "Family Tour",
@@ -211,6 +314,11 @@ export const serviceData = {
       name: "Udaipur Sightseeing Tour",
       price: 2999,
       img: "https://images.unsplash.com/photo-1593696954577-ab3d39317b97",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "8 Hours",
       car: "Swift Dzire",
       route: "City Palace • Fatehsagar • Sajjangarh",
@@ -222,6 +330,11 @@ export const serviceData = {
       name: "Nathdwara + Kumbhalgarh Tour",
       price: 10000,
       img: "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       duration: "Full Day",
       car: "Innova",
       route: "Udaipur • Nathdwara • Kumbhalgarh",
@@ -240,6 +353,11 @@ export const serviceData = {
       name: "Budget Room 101",
       price: 1499,
       img: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Budget",
       duration: "1 Night",
       features: ["AC Room", "WiFi", "2 Guest", "Breakfast"],
@@ -252,6 +370,11 @@ export const serviceData = {
       name: "Budget Room 102",
       price: 1599,
       img: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Budget",
       duration: "1 Night",
       features: ["AC Room", "WiFi", "2 Guest"],
@@ -264,6 +387,11 @@ export const serviceData = {
       name: "Deluxe Room",
       price: 2999,
       img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Deluxe",
       duration: "1 Night",
       features: ["King Bed", "Breakfast", "WiFi", "City View"],
@@ -276,6 +404,11 @@ export const serviceData = {
       name: "Family Suite",
       price: 4499,
       img: "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Family",
       duration: "1 Night",
       features: ["4 Guests", "2 Beds", "WiFi"],
@@ -288,6 +421,11 @@ export const serviceData = {
       name: "Luxury Palace Stay",
       price: 6999,
       img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Luxury",
       duration: "1 Night",
       features: ["Suite", "Pool", "Breakfast", "View"],
@@ -303,6 +441,11 @@ export const serviceData = {
       name: "Udaipur City Guide",
       price: 999,
       img: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Local Guide",
       duration: "4 Hours",
       features: ["Hindi Guide", "Local Knowledge"],
@@ -315,6 +458,11 @@ export const serviceData = {
       name: "Full Day Tour Guide",
       price: 1999,
       img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Professional",
       duration: "8 Hours",
       features: ["History Info", "Route Planning"],
@@ -327,6 +475,11 @@ export const serviceData = {
       name: "Heritage Walk Guide",
       price: 1499,
       img: "https://images.unsplash.com/photo-1491553895911-0055eca6402d",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Walking Tour",
       duration: "3 Hours",
       features: ["Old City", "Culture"],
@@ -339,6 +492,11 @@ export const serviceData = {
       name: "Temple Tour Guide",
       price: 1799,
       img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963",
+      images: [
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+        "https://images.unsplash.com/photo-1611242320536-fb0e0d4f3d52",
+      ],
       type: "Religious Tour",
       duration: "6 Hours",
       features: ["Temple Knowledge"],
@@ -346,4 +504,136 @@ export const serviceData = {
       desc: "Visit temples peacefully.",
     },
   ],
+
+  tuktuk: [
+    {
+      id: 1,
+      category: "Local Ride",
+      name: "City Tuk Tuk Ride",
+      price: 199,
+      img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+      images: [
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+      ],
+      duration: "1 Hour",
+      vehicle: "Auto Rickshaw",
+      route: "Local Market • City Area",
+      includes: [
+        "Driver Included",
+        "Fuel Included",
+        "Quick Ride",
+        "Affordable Price",
+      ],
+    },
+
+    {
+      id: 2,
+      category: "Sightseeing",
+      name: "Udaipur Local Tour",
+      price: 699,
+      img: "https://images.unsplash.com/photo-1504215680853-026ed2a45def",
+      images: [
+        "https://images.unsplash.com/photo-1504215680853-026ed2a45def",
+        "https://images.unsplash.com/photo-1504215680853-026ed2a45def",
+        "https://images.unsplash.com/photo-1504215680853-026ed2a45def",
+      ],
+      duration: "3 Hours",
+      vehicle: "Tour Tuk Tuk",
+      route: "City Palace • Fatehsagar • Lake Pichola",
+      includes: [
+        "Driver Included",
+        "Local Sightseeing",
+        "Parking Included",
+        "Budget Friendly",
+      ],
+    },
+
+    {
+      id: 3,
+      category: "Pickup",
+      name: "Railway Station Pickup",
+      price: 249,
+      img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d",
+      images: [
+        "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d",
+        "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d",
+        "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d",
+      ],
+      duration: "One Way",
+      vehicle: "Pickup Tuk Tuk",
+      route: "Railway Station • Hotel / Home",
+      includes: [
+        "Driver Included",
+        "Luggage Support",
+        "Fast Pickup",
+        "Affordable Fare",
+      ],
+    },
+
+    {
+      id: 4,
+      category: "Pickup",
+      name: "Airport Drop",
+      price: 399,
+      img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7",
+      images: [
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7",
+      ],
+      duration: "One Way",
+      vehicle: "Airport Tuk Tuk",
+      route: "Hotel • Airport",
+      includes: [
+        "Driver Included",
+        "On Time Service",
+        "Fuel Included",
+        "Easy Booking",
+      ],
+    },
+  ],
 };
+
+export const trips = [
+  {
+    title: "Udaipur Escape",
+    days: "3 Days",
+    price: "₹8,999",
+    rating: 4.8,
+    img: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Goa Beach Fun",
+    days: "5 Days",
+    price: "₹12,499",
+    rating: 4.7,
+    img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Manali Snow Tour",
+    days: "4 Days",
+    price: "₹10,999",
+    rating: 4.9,
+    img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990ed7?auto=format&fit=crop&w=1200&q=80",
+  },
+];
+
+export const features = [
+  {
+    icon: Plane,
+    title: "Easy Booking",
+    text: "Fast and secure booking process.",
+  },
+  {
+    icon: Users,
+    title: "Expert Guides",
+    text: "Friendly local guides for every trip.",
+  },
+  {
+    icon: Camera,
+    title: "Best Memories",
+    text: "Capture beautiful moments everywhere.",
+  },
+];

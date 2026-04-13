@@ -9,6 +9,8 @@ import BottomNav from "./components/BottomNav";
 import News from "./pages/News";
 import DestinationDetail from "./pages/DestinationDetail";
 import ServiceDetail from "./pages/ServiceDetail";
+import SocialPage from "./pages/Social";
+import Trip from "./pages/Trip";
 
 const Layout = () => {
   const location = useLocation();
@@ -28,8 +30,10 @@ const Layout = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/news" element={<News />} />
-          <Route path="/destination/:id" element={<DestinationDetail />} />
+          <Route path="/social" element={<SocialPage />} />
+          <Route path="/destination/:name" element={<DestinationDetail />} />
           <Route path="/service/:type" element={<ServiceDetail />} />
+          <Route path="/trips" element={<Trip />} />
         </Routes>
       </div>
 

@@ -25,8 +25,8 @@ const Home = () => {
     <div className="bg-slate-950 text-white min-h-screen p-4 space-y-8">
       <Hero loading={loading} />
       <LanguageSwitcher />
-      <Destinations loading={loading} />
       <Services loading={loading} />
+      <Destinations loading={loading} />
       <AISection loading={loading} />
       <BudgetSection loading={loading} />
     </div>

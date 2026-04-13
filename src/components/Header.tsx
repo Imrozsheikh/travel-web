@@ -5,7 +5,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-gray-800">
+    <header className="sticky top-0 z-[9999] bg-slate-950/90 backdrop-blur-md border-b border-gray-800">
       {/* 🔥 MAIN BAR */}
       <div className="flex items-center justify-between px-4 py-2">
         {/* 💎 Logo */}

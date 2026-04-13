@@ -3,7 +3,7 @@ import { FaCloudSun } from "react-icons/fa";
 
 const Weather = () => {
   const [temp, setTemp] = useState<number | null>(null);
-  const [city] = useState("Jodhpur");
+  const [city] = useState("Udaipur");
 
   useEffect(() => {
     const fetchWeather = async () => {

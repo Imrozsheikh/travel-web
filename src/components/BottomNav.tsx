@@ -2,8 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import {
   FaHome,
   FaCompass,
-  FaMapMarkedAlt,
-  FaHeart,
+  // FaMapMarkedAlt,
+  FaUserCircle,
+  FaUsers,
   FaNewspaper,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -15,9 +16,10 @@ const BottomNav = () => {
   const navItems = [
     { path: "/", icon: <FaHome />, key: "home" },
     { path: "/explore", icon: <FaCompass />, key: "explore" },
-    { path: "/trips", icon: <FaMapMarkedAlt />, key: "trips" },
-    { path: "/wishlist", icon: <FaHeart />, key: "wishlist" },
+    // { path: "/trips", icon: <FaMapMarkedAlt />, key: "trips" },
+    { path: "/social", icon: <FaUsers />, key: "social" },
     { path: "/news", icon: <FaNewspaper />, key: "news" },
+    { path: "/profile", icon: <FaUserCircle />, key: "profile" },
   ];
 
   return (
