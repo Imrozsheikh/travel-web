@@ -20,7 +20,7 @@ const ServiceDetail = () => {
   // ✅ Chips by page type
   const chips = useMemo(() => {
     if (type === "bike") {
-      return ["All", "Scooty", "Bike", "Sports"];
+      return ["All", "Scooty", "Bike"];
     }
 
     if (type === "car") {
@@ -54,7 +54,7 @@ const ServiceDetail = () => {
         </h2>
 
         <p className="text-sm text-gray-400 mt-1">
-          Choose the best {type} package for your trip
+          Choose the best {type} for your trip
         </p>
       </div>
 
@@ -100,26 +100,15 @@ const ServiceDetail = () => {
               <div className="flex justify-between gap-3">
                 <h3 className="font-bold text-lg">{item.name}</h3>
 
-                <p className="text-yellow-400 font-bold">
-                  ₹{item.price}
-                </p>
+                <p className="text-yellow-400 font-bold">₹{item.price}</p>
               </div>
 
               {/* Bike */}
               {type === "bike" && (
                 <>
-                  <InfoRow
-                    icon={<FaMotorcycle />}
-                    text={item.bike}
-                  />
-                  <InfoRow
-                    icon={<FaClock />}
-                    text={item.duration}
-                  />
-                  <InfoRow
-                    icon={<FaMapMarkerAlt />}
-                    text={item.route}
-                  />
+                  <InfoRow icon={<FaMotorcycle />} text={item.bike} />
+                  <InfoRow icon={<FaClock />} text={item.duration} />
+                  <InfoRow icon={<FaMapMarkerAlt />} text={item.route} />
                 </>
               )}
 
@@ -127,22 +116,14 @@ const ServiceDetail = () => {
               {type === "car" && (
                 <>
                   <InfoRow icon={<FaCar />} text={item.car} />
-                  <InfoRow
-                    icon={<FaClock />}
-                    text={item.duration}
-                  />
-                  <InfoRow
-                    icon={<FaMapMarkerAlt />}
-                    text={item.route}
-                  />
+                  <InfoRow icon={<FaClock />} text={item.duration} />
+                  <InfoRow icon={<FaMapMarkerAlt />} text={item.route} />
                 </>
               )}
 
               {/* Hotel / Guide */}
               {type !== "bike" && type !== "car" && (
-                <p className="text-sm text-gray-400">
-                  {item.desc}
-                </p>
+                <p className="text-sm text-gray-400">{item.desc}</p>
               )}
 
               {/* Button */}
@@ -150,7 +131,7 @@ const ServiceDetail = () => {
                 onClick={() => setSelected(item)}
                 className="w-full mt-2 bg-yellow-400 text-black py-2.5 rounded-xl font-semibold flex items-center justify-center gap-2"
               >
-                View Full Details
+                Book Now
                 <FaChevronRight size={12} />
               </button>
             </div>
@@ -171,13 +152,7 @@ const ServiceDetail = () => {
 export default ServiceDetail;
 
 /* Reusable Row */
-const InfoRow = ({
-  icon,
-  text,
-}: {
-  icon: React.ReactNode;
-  text: string;
-}) => (
+const InfoRow = ({ icon, text }: { icon: React.ReactNode; text: string }) => (
   <div className="flex items-center gap-2 text-sm text-gray-300">
     <span className="text-yellow-400">{icon}</span>
     <span>{text}</span>

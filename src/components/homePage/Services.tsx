@@ -1,5 +1,5 @@
 import Skeleton from "../Skeleton";
-import { FaMotorcycle, FaCar, FaHotel, FaShuttleVan } from "react-icons/fa";
+import { FaMotorcycle, FaCar, FaShuttleVan } from "react-icons/fa";
 import { images } from "../../data/images";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -25,11 +25,11 @@ const Services = ({ loading }: { loading: boolean }) => {
       key: "tuktuk",
       img: images.tuktuk, // add image in images.ts
     },
-    {
-      icon: <FaHotel />,
-      key: "hotel",
-      img: images.hotels,
-    },
+    // {
+    //   icon: <FaHotel />,
+    //   key: "hotel",
+    //   img: images.hotels,
+    // },
     //   icon: <FaMapMarkedAlt />,
     //   key: "guide",
     //   img: images.guide,
@@ -45,10 +45,12 @@ const Services = ({ loading }: { loading: boolean }) => {
     <div className="space-y-4">
       {/* 💎 TITLE */}
       <div>
-      <h3 className="text-yellow-400 font-semibold text-lg">
-        {t("services.title")}
-      </h3>
-      <p className="text-sm text-gray-300">Get 5%-10% on discount on booking</p>
+        <h3 className="text-yellow-400 font-semibold text-lg">
+          {t("services.title")}
+        </h3>
+        <p className="text-sm text-gray-300">
+          Get 5%-10% discount
+        </p>
       </div>
 
       {/* 🧩 GRID */}
@@ -68,7 +70,7 @@ const Services = ({ loading }: { loading: boolean }) => {
                 {/* 🖼 IMAGE */}
                 <img
                   src={item.img}
-                  className="w-full h-[110px] object-cover group-hover:scale-110 transition duration-300"
+                  className="w-full h-[150px] object-cover group-hover:scale-110 transition duration-300"
                 />
 
                 {/* 🌑 OVERLAY */}

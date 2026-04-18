@@ -1,16 +1,9 @@
-// src/components/ServiceModal.tsx
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  FaCheckCircle,
-  FaMapMarkerAlt,
-  FaClock,
   FaTimes,
-  FaCar,
-  FaMotorcycle,
-  FaChevronLeft,
-  FaChevronRight,
-  FaShuttleVan,
+  FaWhatsapp,
+  FaUser,
+  FaPhoneAlt,
 } from "react-icons/fa";
 
 type Props = {
@@ -19,160 +12,115 @@ type Props = {
   onClose: () => void;
 };
 
-const ServiceModal = ({ selected, type, onClose }: Props) => {
-  const [current, setCurrent] = useState(0);
-
-  // modal open new item => slider reset
-  useEffect(() => {
-    setCurrent(0);
-  }, [selected]);
+const ServiceModal = ({ selected, onClose }: Props) => {
+  const [formData, setFormData] = useState({ name: "", phone: "" });
 
   if (!selected) return null;
 
-  const images = selected.images?.length ? selected.images : [selected.img];
+  const handleWhatsAppBooking = (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % images.length);
+    const adminNumber = "919876543210"; // Apna number yahan dalein
+    const message = `*Raahat Services - New Booking*%0A-----------------------%0A*Service:* ${selected.name}%0A*Price:* ₹${selected.price}%0A*Customer:* ${formData.name}%0A*Phone:* ${formData.phone}%0A-----------------------%0APlease confirm my slot.`;
+
+    const appUrl = `whatsapp://send?phone=${adminNumber}&text=${message}`;
+    const webUrl = `https://api.whatsapp.com/send?phone=${adminNumber}&text=${message}`;
+
+    window.location.href = appUrl;
+
+    setTimeout(() => {
+      if (document.hasFocus()) {
+        window.open(webUrl, "_blank");
+      }
+    }, 500);
   };
-
-  const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const isVehicle = type === "bike" || type === "car" || type === "tuktuk";
 
   return (
-    <div className="fixed inset-0 bg-black/70 z-50 flex items-end md:items-center justify-center">
-      <div className="bg-slate-900 w-full md:max-w-lg rounded-t-3xl md:rounded-3xl p-4 max-h-[90vh] overflow-y-auto">
-        {/* Close */}
-        <div className="flex justify-end mb-2">
-          <button onClick={onClose}>
-            <FaTimes className="text-white text-lg" />
+    <div className="fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center backdrop-blur-sm p-4">
+      <div className="bg-white w-full max-w-md rounded-[2.5rem] relative overflow-hidden shadow-2xl animate-in zoom-in duration-300">
+        {/* Header Section */}
+        <div className="bg-slate-900 p-8 text-white relative">
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 text-slate-400 hover:text-white transition-all"
+          >
+            <FaTimes size={20} />
           </button>
-        </div>
 
-        {/* Image Slider */}
-        <div className="relative">
-          <img
-            src={images[current]}
-            className="w-full h-[220px] object-cover rounded-2xl"
-            alt={selected.name}
-          />
-
-          {images.length > 1 && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 p-2 rounded-full"
-              >
-                <FaChevronLeft className="text-white text-sm" />
-              </button>
-
-              <button
-                onClick={nextSlide}
-                className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 p-2 rounded-full"
-              >
-                <FaChevronRight className="text-white text-sm" />
-              </button>
-
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-                {images.map((_: any, i: number) => (
-                  <div
-                    key={i}
-                    className={`w-2 h-2 rounded-full ${
-                      current === i ? "bg-yellow-400" : "bg-white/40"
-                    }`}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-
-        <div className="mt-4 pb-20 space-y-3">
-          {/* Title */}
-          <h2 className="text-2xl font-bold text-yellow-400">
-            {selected.name}
-          </h2>
-
-          {/* Bike / Car / Tuktuk */}
-          {isVehicle && (
-            <>
-              <div className="bg-slate-800 rounded-xl p-3 text-sm space-y-2">
-                <p className="flex items-center gap-2">
-                  {type === "bike" && (
-                    <FaMotorcycle className="text-yellow-400" />
-                  )}
-
-                  {type === "car" && <FaCar className="text-yellow-400" />}
-
-                  {type === "tuktuk" && (
-                    <FaShuttleVan className="text-yellow-400" />
-                  )}
-
-                  {selected.bike || selected.car || selected.vehicle}
-                </p>
-
-                <p className="flex items-center gap-2">
-                  <FaClock className="text-yellow-400" />
-                  {selected.duration}
-                </p>
-
-                <p className="flex items-center gap-2">
-                  <FaMapMarkerAlt className="text-yellow-400" />
-                  {selected.route}
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold mb-2">Included:</h3>
-
-                <div className="space-y-2">
-                  {selected.includes?.map((inc: string, idx: number) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 text-sm text-gray-300"
-                    >
-                      <FaCheckCircle className="text-green-400" />
-                      {inc}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
-
-          {/* Hotel / Guide */}
-          {!isVehicle && (
-            <>
-              <p className="text-sm text-gray-300">{selected.desc}</p>
-
-              <div className="space-y-2">
-                {selected.features?.map((item: string, i: number) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-2 text-sm text-gray-300"
-                  >
-                    <FaCheckCircle className="text-green-400" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-
-          {/* Price */}
-          <div className="pt-3 border-t border-gray-700">
-            <p className="text-3xl font-bold text-yellow-400">
-              ₹{selected.price}
-            </p>
-            <p className="text-xs text-gray-400">Final Price</p>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="bg-yellow-400 text-black text-[10px] font-black px-2 py-0.5 rounded-full uppercase">
+              Selected Service
+            </span>
           </div>
+          <h2 className="text-2xl font-bold">{selected.name}</h2>
+          <p className="text-slate-400 text-sm mt-1">
+            Starting from{" "}
+            <span className="text-yellow-400 font-bold">₹{selected.price}</span>
+          </p>
+        </div>
 
-          {/* Button */}
-          <button className="w-full bg-yellow-400 text-black py-3 rounded-xl font-bold">
-            Book Now
-          </button>
+        {/* Form Section */}
+        <div className="p-8">
+          <form onSubmit={handleWhatsAppBooking} className="space-y-5">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-500 uppercase ml-1">
+                Your Name
+              </label>
+              <div className="relative">
+                <FaUser
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300"
+                  size={14}
+                />
+                <input
+                  required
+                  type="text"
+                  placeholder="your name"
+                  className="w-full bg-slate-50 border border-slate-200 py-4 pl-12 pr-4 rounded-2xl outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all text-slate-800 font-medium"
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-500 uppercase ml-1">
+                Phone Number
+              </label>
+              <div className="relative">
+                <FaPhoneAlt
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300"
+                  size={14}
+                />
+                <input
+                  required
+                  type="tel"
+                  placeholder="mobile number"
+                  className="w-full bg-slate-50 border border-slate-200 py-4 pl-12 pr-4 rounded-2xl outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all text-slate-800 font-medium"
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            {/* <div className="flex items-center gap-2 text-[11px] text-slate-400 py-2">
+              <FaCheckCircle className="text-green-500" />
+              <span>Verified Service • 12+ Years Experience</span>
+            </div> */}
+
+            <button
+              type="submit"
+              className="w-full bg-yellow-400 hover:bg-slate-900 hover:text-white text-black py-4 rounded-2xl font-black transition-all active:scale-95 flex items-center justify-center gap-3 shadow-xl shadow-yellow-400/20"
+            >
+              <FaWhatsapp size={22} />
+              Book via WhatsApp
+            </button>
+          </form>
+
+          <p className="text-center text-[10px] text-slate-400 mt-6 uppercase tracking-widest">
+            We will contact you shortly after booking
+          </p>
         </div>
       </div>
     </div>

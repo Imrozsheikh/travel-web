@@ -1,49 +1,23 @@
 import { useEffect, useState } from "react";
 import {
   FaSearch,
-  FaStar,
-  FaHeart,
   FaMapMarkerAlt,
   FaHotel,
   FaUtensils,
   FaFire,
-  FaPlaneDeparture,
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
+import { useNavigate } from "react-router-dom";
 
 const Explore = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [wishlist, setWishlist] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, []);
-
-  const destinations = [
-    {
-      title: "Dubai",
-      price: 20000,
-      rating: 4.5,
-      location: "UAE",
-      img: "https://images.pexels.com/photos/823696/pexels-photo-823696.jpeg",
-    },
-    {
-      title: "Paris",
-      price: 40000,
-      rating: 4.8,
-      location: "France",
-      img: "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg",
-    },
-    {
-      title: "Bali",
-      price: 25000,
-      rating: 4.6,
-      location: "Indonesia",
-      img: "https://images.pexels.com/photos/2474689/pexels-photo-2474689.jpeg",
-    },
-  ];
 
   const hotels = [
     {
@@ -88,16 +62,6 @@ const Explore = () => {
     "Summer Escape Offers",
   ];
 
-  const filtered = destinations.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase()),
-  );
-
-  const toggleWishlist = (title: string) => {
-    setWishlist((prev) =>
-      prev.includes(title) ? prev.filter((x) => x !== title) : [...prev, title],
-    );
-  };
-
   const SectionTitle = ({ Icon, title }: { Icon: IconType; title: string }) => (
     <div className="mb-3 flex items-center gap-2">
       <Icon className="text-yellow-400" />
@@ -139,52 +103,11 @@ const Explore = () => {
       </div>
 
       <section>
-        <SectionTitle Icon={FaPlaneDeparture} title="Popular Destinations" />
-        {/* <Offer /> */}
-        <ScrollRow>
-          {filtered.map((item) => (
-            <div
-              key={item.title}
-              className="min-w-[260px] snap-start rounded-2xl overflow-hidden bg-slate-900 border border-gray-800"
-            >
-              <div className="relative">
-                <img src={item.img} className="h-[180px] w-full object-cover" />
-                <button
-                  onClick={() => toggleWishlist(item.title)}
-                  className="absolute top-2 right-2 bg-black/50 p-2 rounded-full"
-                >
-                  <FaHeart
-                    className={
-                      wishlist.includes(item.title)
-                        ? "text-red-500"
-                        : "text-white"
-                    }
-                  />
-                </button>
-              </div>
-              <div className="p-3">
-                <h4 className="font-semibold">{item.title}</h4>
-                <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
-                  <FaMapMarkerAlt /> {item.location}
-                </div>
-                <div className="mt-2 flex justify-between">
-                  <span className="flex items-center gap-1 text-yellow-400 text-sm">
-                    <FaStar /> {item.rating}
-                  </span>
-                  <span className="font-bold text-yellow-400">
-                    ₹{item.price}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </ScrollRow>
-      </section>
-
-      <section>
         <div className="flex items-center justify-between">
           <SectionTitle Icon={FaHotel} title="Top Hotels" />
-          <div className="text-sm">View all</div>
+          <div onClick={() => navigate(`/service/hotel`)} className="text-sm">
+            View all
+          </div>
         </div>
         <Offer />
         <ScrollRow>

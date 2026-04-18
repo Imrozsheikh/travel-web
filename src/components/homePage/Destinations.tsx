@@ -8,9 +8,10 @@ const Destinations = ({ loading }: { loading: boolean }) => {
   const { t } = useTranslation();
 
   const destinations = [
-    { key: "udaipur", img: images.maldives },
-    { key: "jaipur", img: images.dubai },
-    { key: "jodhpur", img: images.bali },
+    { key: "ambrai_Ghat", img: images.maldives },
+    { key: "pichola_lake", img: images.dubai },
+    { key: "fateh_sagar", img: images.bali },
+    { key: "city_palace", img: images.bali },
   ];
 
   return (

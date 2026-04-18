@@ -13,7 +13,9 @@ const Header = () => {
           onClick={() => navigate("/")}
           className="py-2 text-2xl font-semibold text-yellow-400 tracking-wide cursor-pointer"
         >
-          Tour Travel
+          Rahi
+          {/* Safar-Saz */}
+          {/* Raahat */}
         </div>
 
         {/* 🔍 Search (Desktop only) */}

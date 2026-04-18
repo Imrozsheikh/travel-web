@@ -2,9 +2,10 @@
   "welcome": "Plan Your Dream Trip ✨",
   "destinations": {
     "title": "Popular Destinations",
-    "udaipur": "Udaipur",
-    "jaipur": "Jaipur",
-    "jodhpur": "Jodhpur"
+    "ambrai_Ghat": "Ambrai Ghat",
+    "pichola_lake": "Pichola lake",
+    "fateh_sagar": "Fateh sagar",
+    "city_palace": "City palace"
   },
   "destination": {
     "udaipur": {

@@ -11,6 +11,7 @@ import DestinationDetail from "./pages/DestinationDetail";
 import ServiceDetail from "./pages/ServiceDetail";
 import SocialPage from "./pages/Social";
 import Trip from "./pages/Trip";
+import NewsDetails from "./pages/NewsDetail";
 
 const Layout = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ const Layout = () => {
           <Route path="/social" element={<SocialPage />} />
           <Route path="/destination/:name" element={<DestinationDetail />} />
           <Route path="/service/:type" element={<ServiceDetail />} />
+          <Route path="/news/:id" element={<NewsDetails />} />
           <Route path="/trips" element={<Trip />} />
         </Routes>
       </div>

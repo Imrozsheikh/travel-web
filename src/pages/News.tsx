@@ -1,77 +1,187 @@
-import { FaClock, FaNewspaper } from "react-icons/fa";
-import { newsData } from "../data/mockData";
-import { useEffect, useState } from "react";
+import {
+  FaClock,
+  FaNewspaper,
+  FaMapMarkerAlt,
+  FaSearch,
+  FaBolt,
+} from "react-icons/fa";
+import { useEffect, useMemo, useState } from "react";
 import Skeleton from "../components/Skeleton";
+import { newsData } from "../data/mockData";
+import { useNavigate } from "react-router-dom";
+
+const categories = ["All", "Events", "Weather", "Traffic", "Tourism", "Offers"];
 
 const News = () => {
   const [loading, setLoading] = useState(true);
-
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const navigate = useNavigate();
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
+    const timer = setTimeout(() => setLoading(false), 400);
     return () => clearTimeout(timer);
   }, []);
 
+  // UPDATE useMemo filter
+  const filteredNews = useMemo(() => {
+    return newsData.filter((item: any) => {
+      const matchSearch =
+        item.title.toLowerCase().includes(search.toLowerCase()) ||
+        item.desc.toLowerCase().includes(search.toLowerCase());
+
+      const matchCategory =
+        activeCategory === "All" || item.category === activeCategory;
+
+      return matchSearch && matchCategory;
+    });
+  }, [search, activeCategory]);
+
+  const featured = filteredNews[0];
+
   return (
-    <div className="bg-slate-950 text-white min-h-screen p-4 space-y-6">
-      {/* 🔥 HEADER */}
+    <div className="min-h-screen bg-slate-950 p-4 pb-24 text-white space-y-6">
+      {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="bg-yellow-500/10 p-2 rounded-lg">
-          <FaNewspaper className="text-yellow-400 text-lg" />
+        <div className="rounded-xl bg-yellow-500/10 p-2">
+          <FaNewspaper className="text-lg text-yellow-400" />
         </div>
 
         <div>
-          <h2 className="text-xl font-bold text-yellow-400">News</h2>
-          <p className="text-gray-400 text-sm">
-            Latest updates & travel stories
+          <h2 className="text-xl font-bold text-yellow-400">Travel Updates</h2>
+          <p className="text-sm text-gray-400">
+            Latest city news & travel alerts
           </p>
         </div>
       </div>
 
-      {/* 📰 NEWS LIST */}
+      {/* Search */}
+      <div className="flex items-center rounded-2xl border border-gray-700 bg-white/10 px-3 py-3">
+        <FaSearch className="mr-2 text-gray-400" />
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search updates..."
+          className="w-full bg-transparent text-sm outline-none placeholder:text-gray-400"
+        />
+      </div>
+
+      {/* Breaking Alert */}
+      <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/10 p-3">
+        <div className="flex items-center gap-2 text-sm font-medium text-yellow-300">
+          <FaBolt />
+          Breaking:
+          <span className="text-white">
+            Heavy traffic near City Palace today
+          </span>
+        </div>
+      </div>
+
+      {/* Cities */}
+      {/* <div className="flex gap-2 overflow-x-auto pb-1">
+        {cities.map((city) => (
+          <button
+            key={city}
+            onClick={() => setActiveCity(city)}
+            className={`whitespace-nowrap rounded-full px-4 py-2 text-xs transition ${
+              activeCity === city
+                ? "bg-yellow-400 text-black"
+                : "border border-gray-700 bg-slate-900 text-gray-300"
+            }`}
+          >
+            {city}
+          </button>
+        ))}
+      </div> */}
+
+      {/* Categories */}
+      <div className="flex gap-2 overflow-x-auto pb-1">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`whitespace-nowrap rounded-full px-4 py-2 text-xs transition ${
+              activeCategory === cat
+                ? "bg-white text-black"
+                : "border border-gray-700 bg-slate-900 text-gray-300"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Featured News */}
+      {!loading && featured && (
+        <div onClick={() => navigate(`/news/${featured.id}`)} className="overflow-hidden rounded-2xl border border-gray-800 bg-slate-900">
+          <div className="relative">
+            <img src={featured.img} className="h-[220px] w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+
+            <div className="absolute bottom-3 left-3 right-3">
+              <span className="rounded-full bg-yellow-400 px-2 py-1 text-[10px] font-bold text-black">
+                FEATURED
+              </span>
+
+              <h3 className="mt-2 text-lg font-bold">{featured.title}</h3>
+
+              <div className="mt-1 flex items-center gap-3 text-xs text-gray-300">
+                <span className="flex items-center gap-1">
+                  <FaMapMarkerAlt />
+                  {featured.city}
+                </span>
+                <span className="flex items-center gap-1">
+                  <FaClock />
+                  {featured.time}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* News List */}
       <div className="space-y-4">
         {loading
-          ? Array(3)
+          ? Array(4)
               .fill(0)
               .map((_, i) => (
                 <div key={i}>
-                  <Skeleton className="w-full h-[160px] rounded-xl" />
-                  <Skeleton className="h-5 mt-3 w-3/4" />
-                  <Skeleton className="h-4 mt-2 w-full" />
+                  <Skeleton className="h-[160px] w-full rounded-xl" />
+                  <Skeleton className="mt-3 h-5 w-3/4" />
+                  <Skeleton className="mt-2 h-4 w-full" />
                 </div>
               ))
-          : newsData.map((item, index) => (
+          : filteredNews.map((item: any, index: number) => (
               <div
                 key={index}
-                className="bg-slate-900 border border-gray-800 rounded-xl overflow-hidden hover:scale-[1.02] transition duration-300"
+                className="overflow-hidden rounded-2xl border border-gray-800 bg-slate-900"
               >
-                {/* 🖼 Image */}
-                <div className="relative">
-                  <img
-                    src={item.img}
-                    loading="lazy"
-                    className="w-full h-[160px] object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                </div>
+                <img src={item.img} className="h-[160px] w-full object-cover" />
 
-                {/* 📄 Content */}
-                <div className="p-4 space-y-2">
-                  <h3 className="font-semibold text-lg leading-snug">
+                <div className="space-y-2 p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] text-gray-300">
+                      {item.category}
+                    </span>
+
+                    <span className="text-xs text-gray-500">{item.time}</span>
+                  </div>
+
+                  <h3 className="text-lg font-semibold leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-sm text-gray-400 line-clamp-2">
+                  <p className="line-clamp-2 text-sm text-gray-400">
                     {item.desc}
                   </p>
 
-                  {/* ⏱ Time + CTA */}
-                  <div className="flex items-center justify-between mt-3">
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                      <FaClock />
-                      {item.time}
+                  <div className="flex items-center justify-between pt-1">
+                    <div className="flex items-center gap-1 text-xs text-gray-500">
+                      <FaMapMarkerAlt />
+                      {item.city}
                     </div>
 
-                    <button className="text-yellow-400 text-xs hover:underline">
+                    <button className="text-xs text-yellow-400 hover:underline">
                       Read more →
                     </button>
                   </div>
@@ -80,10 +190,10 @@ const News = () => {
             ))}
       </div>
 
-      {/* ❌ Empty State */}
-      {!loading && newsData.length === 0 && (
-        <p className="text-center text-gray-400 text-sm mt-10">
-          No news available 😔
+      {/* Empty */}
+      {!loading && filteredNews.length === 0 && (
+        <p className="mt-10 text-center text-sm text-gray-400">
+          No updates found 😔
         </p>
       )}
     </div>
